@@ -1,0 +1,201 @@
+{
+  "name": "Mail Trigger",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -128
+      ],
+      "id": "dc56253e-3cb2-4c26-ba13-478091ee5318",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Get row(s) in sheet').item.json.Email }}",
+        "subject": "Your Seat is Confirmed – AI-Powered Digital Marketing Workshop",
+        "message": "=<!DOCTYPE html>\n<html>\n<body>\n\n<p>Hello {{ $json.firstName }},</p>\n\n<p>Your registration for the AI-Powered Digital Marketing Workshop has been successfully confirmed!</p>\n\n<h3>Workshop Details:</h3>\n<ul>\n<li><strong>Date:</strong> [Add Date]</li>\n<li><strong>Time:</strong> [Add Time]</li>\n<li><strong>Venue:</strong> [Add Venue/Online Link]</li>\n<li><strong>Duration:</strong> [Add Duration]</li>\n</ul>\n\n<p>Please save this confirmation. We'll send joining instructions closer to the event date.</p>\n\n<p>Best regards,<br>\n[Your Team Name]</p>\n\n</body>\n</html>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        832,
+        -16
+      ],
+      "id": "a19ce9ea-87c4-43c9-995b-082edc4f4da3",
+      "name": "Send a message",
+      "webhookId": "f835d834-0f44-4d3d-8258-a7984ee40c62",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "NO691s8urRoOI9Zt",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bCBNoyjVsZ98K18g4A8VgKIkcXSce0BAKBW4Quq8PL0",
+          "mode": "list",
+          "cachedResultName": "automations",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bCBNoyjVsZ98K18g4A8VgKIkcXSce0BAKBW4Quq8PL0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bCBNoyjVsZ98K18g4A8VgKIkcXSce0BAKBW4Quq8PL0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        144,
+        -112
+      ],
+      "id": "826c6e31-7030-47c0-83f4-4b2d4ecc708d",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tSpCqcVFAv2bhlxx",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        352,
+        -112
+      ],
+      "id": "af4101f9-adaa-45ff-a9cc-9b2eb0871661",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        -16
+      ],
+      "id": "cce42ebb-3217-49c9-be51-bd124ac946a3",
+      "name": "Wait",
+      "webhookId": "33f48562-40cd-4b65-87ee-fb92c36f9d94"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -144,
+        80
+      ],
+      "id": "ed1a5082-0763-4f6b-af49-ec50b5380941",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "31fda059-b814-49e6-8652-105ae4edb077",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "09428f771b1642fd3a4f3716301bc8bd9a9172bb698ed10b5d67a1d29a0a488a"
+  },
+  "id": "fb6weIjMsVodUv26",
+  "tags": []
+}
