@@ -1,104 +1,133 @@
-# ai-email-automation
-AI-powered email automation using OpenAI and Gmail API
-📧 AI-Powered Email Automation Workflow
+AI EMAIL AUTOMATION PROJECT
+===========================
 
-This project is an AI-assisted automated email system built using n8n, Google Sheets, and Gmail API.
-It reads user data from a Google Sheet and sends personalized confirmation emails automatically at scale with delay control and scheduling.
+Project Overview
+----------------
+This project is an automated email system built using n8n, Google Sheets, and the Gmail API.  
+It sends personalized bulk emails automatically using data stored in Google Sheets.
 
-🚀 Features
+The system is designed to save time and automate repetitive email tasks such as confirmations, notifications, and marketing emails.
 
-📊 Reads recipient data (name & email) from Google Sheets
 
-✉️ Sends personalized HTML email confirmations
+Key Features
+------------
+- Reads recipient name and email from Google Sheets
+- Sends personalized HTML emails
+- Processes multiple records automatically
+- Adds 2-second wait between emails to avoid spam detection
+- Supports manual and scheduled triggers
+- Integrates with Gmail API and Google Sheets API
 
-🔁 Loops through multiple records automatically
 
-⏳ Adds wait intervals to prevent email throttling
-
-🕒 Can be triggered manually or on a schedule
-
-🔗 Integrates with Gmail API and Google Sheets API
-
-🧠 Use Case
-
+Use Cases
+---------
 This workflow can be used for:
 
-Workshop or event registration confirmations
+- Workshop or event confirmation emails
+- Bulk personalized email notifications
+- Automated onboarding emails
+- Marketing campaigns
+- Newsletter distribution
 
-Bulk personalized email notifications
 
-Automated onboarding or follow-up emails
+Technology Used
+---------------
+Automation Platform: n8n  
+APIs: Google Sheets API, Gmail API  
+Email Format: HTML  
+Triggers: Manual and Scheduled (Daily 10 AM)
 
-Marketing or customer communication workflows
 
-🛠️ Tech Stack
+How the Workflow Works
+----------------------
+1. Workflow starts using manual trigger or scheduled trigger.
+2. Google Sheets node reads all rows containing Email and firstName.
+3. Split in Batches processes one row at a time.
+4. Wait node adds 2 seconds delay to avoid rate limiting.
+5. Gmail node sends personalized email.
+6. Loop continues until all rows are processed.
 
-Automation Platform: n8n
 
-APIs Used:
+Project Folder Structure
+------------------------
+ai-email-automation/
 
-Google Sheets API
+- workflows/
+  - Mail_Trigger.json (n8n workflow file)
 
-Gmail API
+- README.md (documentation)
 
-Email Format: HTML
+- .gitignore (ignores credentials and sensitive files)
 
-Trigger Types: Manual trigger / Scheduled trigger
 
-⚙️ How It Works
+Setup Instructions
+------------------
 
-Trigger starts manually or via schedule
+Prerequisites:
+- n8n installed (cloud or local)
+- Google account
+- Gmail account for sending emails
 
-Google Sheets node fetches rows containing user data
+Import Workflow:
+1. Open n8n dashboard.
+2. Click Workflows.
+3. Select Import.
+4. Upload Mail_Trigger.json file.
 
-Data is processed in batches
+Connect Credentials:
+- Connect Google Sheets OAuth2 account.
+- Connect Gmail OAuth2 account.
 
-A wait timer controls the sending frequency
+Configure Google Sheet:
+Create a sheet with the following columns:
 
-Gmail API sends a personalized email to each recipient
+Email | firstName  
+john@example.com | John  
+sarah@example.com | Sarah  
 
-Loop continues until all rows are processed
+Customize Email Template:
+Edit the email content inside the Gmail node.
+Change workshop details, message, or branding as needed.
 
-📁 Files
+Test Workflow:
+1. Click Execute Workflow to test manually.
+2. Turn on Active mode to enable scheduled automation.
 
-Mail Trigger.json → n8n workflow file
 
-📌 Setup Instructions
+Email Template Example
+----------------------
+Hello firstName,
 
-Install and run n8n
+Your registration for the AI-Powered Digital Marketing Workshop
+has been successfully confirmed.
 
-Import the Mail Trigger.json workflow
+Workshop Details:
+Date: March 15, 2024  
+Time: 10:00 AM - 4:00 PM  
+Venue: Online  
 
-Connect your:
+Best regards  
+Your Team
 
-Google Sheets account
 
-Gmail account
+Security Notes
+--------------
+- Do not upload credentials or API keys to GitHub.
+- Workflow JSON does not store sensitive data.
+- Credentials are stored securely inside n8n.
+- Use .gitignore to exclude secret files.
 
-Update the Google Sheet with:
 
-firstName
+Learning Outcomes
+-----------------
+- Understanding workflow automation using n8n
+- API integration with Google services
+- Batch processing and looping logic
+- Rate limiting using wait nodes
+- Scheduled automation workflows
+- Real-world SaaS automation practice
 
-Email
 
-Customize the email template (HTML supported)
 
-Run manually or schedule execution
 
-🧩 Example Email Content
-Hello {{ firstName }},
-
-Your registration for the AI-powered workshop is confirmed.
-We will send joining details soon.
-
-📈 Learning Outcomes
-
-Learned workflow automation using n8n
-
-Integrated multiple APIs into a single pipeline
-
-Implemented batch processing and scheduling logic
-
-Designed scalable communication workflows
-
-Understood practical automation use cases in SaaS
+Created using n8n automation
