@@ -6,10 +6,10 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -160,
-        -128
+        0,
+        0
       ],
-      "id": "dc56253e-3cb2-4c26-ba13-478091ee5318",
+      "id": "95e5f0bc-64ff-4c39-918f-917e005ee693",
       "name": "When clicking ‘Execute workflow’"
     },
     {
@@ -24,15 +24,15 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        832,
-        -16
+        992,
+        112
       ],
-      "id": "a19ce9ea-87c4-43c9-995b-082edc4f4da3",
+      "id": "9e20ce43-8986-4f68-9885-23033ad95692",
       "name": "Send a message",
       "webhookId": "f835d834-0f44-4d3d-8258-a7984ee40c62",
       "credentials": {
         "gmailOAuth2": {
-          "id": "NO691s8urRoOI9Zt",
+          "id": "HAA7TRGlBqz5ghc2",
           "name": "Gmail account"
         }
       }
@@ -41,32 +41,30 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1bCBNoyjVsZ98K18g4A8VgKIkcXSce0BAKBW4Quq8PL0",
-          "mode": "list",
-          "cachedResultName": "automations",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bCBNoyjVsZ98K18g4A8VgKIkcXSce0BAKBW4Quq8PL0/edit?usp=drivesdk"
+          "value": "https://docs.google.com/spreadsheets/d/1Gov4ScQH9xZBC9zQfp2kz45lm_aPcDTSi3KyhROVlls/edit?pli=1&gid=0#gid=0",
+          "mode": "url"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bCBNoyjVsZ98K18g4A8VgKIkcXSce0BAKBW4Quq8PL0/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Gov4ScQH9xZBC9zQfp2kz45lm_aPcDTSi3KyhROVlls/edit#gid=0"
         },
         "options": {}
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        144,
-        -112
+        304,
+        16
       ],
-      "id": "826c6e31-7030-47c0-83f4-4b2d4ecc708d",
+      "id": "8ef4462c-d395-4cea-93b6-fddae702d96b",
       "name": "Get row(s) in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "tSpCqcVFAv2bhlxx",
-          "name": "Google Sheets account 2"
+          "id": "koNKjHRoQwnpQ6wR",
+          "name": "Google Sheets account"
         }
       }
     },
@@ -77,10 +75,10 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        352,
-        -112
+        512,
+        16
       ],
-      "id": "af4101f9-adaa-45ff-a9cc-9b2eb0871661",
+      "id": "047e4acf-64e5-441c-87d1-deb9d89ba885",
       "name": "Loop Over Items"
     },
     {
@@ -90,10 +88,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        560,
-        -16
+        720,
+        112
       ],
-      "id": "cce42ebb-3217-49c9-be51-bd124ac946a3",
+      "id": "5eb70e15-b414-4b40-9474-dae733f6a237",
       "name": "Wait",
       "webhookId": "33f48562-40cd-4b65-87ee-fb92c36f9d94"
     },
@@ -110,10 +108,10 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -144,
-        80
+        16,
+        208
       ],
-      "id": "ed1a5082-0763-4f6b-af49-ec50b5380941",
+      "id": "98a9fc57-be27-4220-84c0-f410d55ea817",
       "name": "Schedule Trigger"
     }
   ],
@@ -189,13 +187,15 @@
   },
   "active": false,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
   },
-  "versionId": "31fda059-b814-49e6-8652-105ae4edb077",
+  "versionId": "4114a6a6-044c-4f45-844e-cb3147c0dd89",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "09428f771b1642fd3a4f3716301bc8bd9a9172bb698ed10b5d67a1d29a0a488a"
+    "instanceId": "6a603d517c2eeba6d1c1070330fc4d74d83c14032574d68a194158bc516a9ab4"
   },
-  "id": "fb6weIjMsVodUv26",
+  "id": "tblU71u7jvJyCxXm",
   "tags": []
 }
